@@ -15,7 +15,7 @@ import { useAppLifecycle } from '@/hooks/useAppLifecycle';
 const SpaceMono = require('../assets/fonts/SpaceMono-Regular.ttf');
 
 Sentry.init({
-  dsn: process.env.SENTRY_DSN,
+  dsn: process.env.EXPO_PUBLIC_SENTRY_DSN,
 });
 
 export { ErrorBoundary } from 'expo-router';
