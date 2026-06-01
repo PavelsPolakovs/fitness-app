@@ -1,5 +1,8 @@
 # Learn more https://docs.github.com/en/get-started/getting-started-with-git/ignoring-files
 
+# Claude Code
+.claude/credentials.json
+
 # dependencies
 node_modules/
 
@@ -29,6 +32,9 @@ yarn-error.*
 # macOS
 .DS_Store
 *.pem
+
+# JetBrains / PhpStorm
+.idea/
 
 # local env files
 .env*.local
