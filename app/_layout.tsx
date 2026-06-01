@@ -7,9 +7,10 @@ import * as SplashScreen from 'expo-splash-screen';
 
 import * as Sentry from '@sentry/react-native';
 
-import { useAuthStore } from '@/store/auth/authStore';
 import { initDatabase } from '@/store/database/database';
 import { useAppLifecycle } from '@/hooks/useAppLifecycle';
+
+import { AuthProvider, useAuth } from '@/context/AuthContext';
 
 // eslint-disable-next-line @typescript-eslint/no-require-imports
 const SpaceMono = require('../assets/fonts/SpaceMono-Regular.ttf');
@@ -28,11 +29,8 @@ SplashScreen.preventAutoHideAsync();
 
 export default Sentry.wrap(function RootLayout() {
   const [dbReady, setDbReady] = useState(false);
-  const userId = useAuthStore((state) => state.userId);
 
-  const [fontsLoaded, fontError] = useFonts({
-    SpaceMono,
-  });
+  const [fontsLoaded, fontError] = useFonts({ SpaceMono });
 
   useEffect(() => {
     if (fontError) throw fontError;
@@ -51,13 +49,27 @@ export default Sentry.wrap(function RootLayout() {
     }
   }, [fontsLoaded, dbReady]);
 
-  useAppLifecycle();
-
   if (!fontsLoaded || !dbReady) {
     return null;
   }
 
-  if (!userId) {
+  return (
+    <AuthProvider>
+      <RootNav />
+    </AuthProvider>
+  );
+});
+
+function RootNav() {
+  const { user, loading } = useAuth();
+
+  useAppLifecycle();
+
+  if (loading) {
+    return null;
+  }
+
+  if (!user) {
     return <Redirect href="/(auth)/login" />;
   }
 
@@ -67,4 +79,4 @@ export default Sentry.wrap(function RootLayout() {
       <Stack.Screen name="(auth)" options={{ headerShown: false }} />
     </Stack>
   );
-});
+}

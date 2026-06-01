@@ -1,13 +1,14 @@
 import { useTranslation } from 'react-i18next';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
-import { useAuthStore } from '@/store/auth/authStore';
 import { lightTheme } from '@/constants/themes';
+
+import { useAuth } from '@/context/AuthContext';
 
 export default function ProfileScreen() {
   const { t, i18n } = useTranslation();
   const theme = lightTheme;
-  const signOut = useAuthStore((state) => state.signOut);
+  const { signOut } = useAuth();
 
   const toggleLanguage = () => {
     const next = i18n.language === 'en' ? 'ru' : 'en';

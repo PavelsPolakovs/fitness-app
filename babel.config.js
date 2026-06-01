@@ -10,8 +10,10 @@ module.exports = function (api) {
           alias: {
             '@/app': './app',
             '@/components': './components',
-            '@/store': './store',
+            '@/context': './context',
             '@/hooks': './hooks',
+            '@/lib': './lib',
+            '@/store': './store',
             '@/constants': './constants',
           },
         },

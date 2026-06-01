@@ -1,36 +1,35 @@
 import { ActivityIndicator, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { useRouter } from 'expo-router';
 
-import { useAuthStore } from '@/store/auth/authStore';
+import { useAuth } from '@/context/AuthContext';
 
 export default function LoginScreen() {
   const router = useRouter();
-  const { isLoading, signInWithGoogle, signInWithApple } = useAuthStore();
-  const userId = useAuthStore((state) => state.userId);
+  const { user, loading, signIn } = useAuth();
 
-  if (userId) {
+  if (user) {
     router.replace('/(tabs)/');
     return null;
   }
+
+  const handleApple = () => {
+    alert('This sign-in method is not yet available.');
+  };
 
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Fitness App</Text>
       <Text style={styles.subtitle}>Sign in to continue</Text>
 
-      <TouchableOpacity style={styles.button} onPress={signInWithGoogle} disabled={isLoading}>
-        {isLoading ? (
+      <TouchableOpacity style={styles.button} onPress={signIn} disabled={loading}>
+        {loading ? (
           <ActivityIndicator color="#fff" />
         ) : (
           <Text style={styles.buttonText}>Sign in with Google</Text>
         )}
       </TouchableOpacity>
 
-      <TouchableOpacity
-        style={[styles.button, styles.appleButton]}
-        onPress={signInWithApple}
-        disabled={isLoading}
-      >
+      <TouchableOpacity style={[styles.button, styles.appleButton]} onPress={handleApple}>
         <Text style={styles.buttonText}>Sign in with Apple</Text>
       </TouchableOpacity>
     </View>
