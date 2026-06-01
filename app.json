@@ -9,8 +9,7 @@
     "userInterfaceStyle": "automatic",
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.palevich.fitnessapp",
-      "googleServicesFile": "./GoogleService-Info.plist"
+      "bundleIdentifier": "com.palevich.fitnessapp"
     },
     "android": {
       "adaptiveIcon": {
@@ -43,9 +42,6 @@
         {
           "android": {
             "googleServicesFile": "./google-services.json"
-          },
-          "ios": {
-            "googleServicesFile": "./GoogleService-Info.plist"
           }
         }
       ]
