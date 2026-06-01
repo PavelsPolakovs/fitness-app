@@ -1,0 +1,26 @@
+{
+  "common": {
+    "appName": "Фитнес Приложение",
+    "signIn": "Войти",
+    "signOut": "Выйти",
+    "loading": "Загрузка..."
+  },
+  "auth": {
+    "signInWithGoogle": "Войти через Google",
+    "signInWithApple": "Войти через Apple",
+    "signInSubtitle": "Войдите, чтобы продолжить",
+    "appleNotAvailable": "Этот способ входа пока недоступен."
+  },
+  "tabs": {
+    "home": "Главная",
+    "workout": "Тренировка",
+    "progress": "Прогресс",
+    "profile": "Профиль"
+  },
+  "screens": {
+    "home": "Главный экран",
+    "workout": "Экран тренировки",
+    "progress": "Экран прогресса",
+    "profile": "Экран профиля"
+  }
+}
