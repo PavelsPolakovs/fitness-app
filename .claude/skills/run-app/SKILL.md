@@ -24,6 +24,7 @@ adb devices
 Expected: a device serial with status `device`.
 
 If status is `no permissions`, run in a regular terminal with sudo:
+
 ```bash
 echo 'SUBSYSTEM=="usb", ATTR{idVendor}=="0fce", MODE="0666", GROUP="plugdev"' | sudo tee /etc/udev/rules.d/51-android.rules
 sudo udevadm control --reload-rules && sudo udevadm trigger
