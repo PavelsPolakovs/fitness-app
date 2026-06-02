@@ -1,0 +1,26 @@
+{
+  "common": {
+    "appName": "Fitness App",
+    "signIn": "Sign in",
+    "signOut": "Sign out",
+    "loading": "Loading..."
+  },
+  "auth": {
+    "signInWithGoogle": "Sign in with Google",
+    "signInWithApple": "Sign in with Apple",
+    "signInSubtitle": "Sign in to continue",
+    "appleNotAvailable": "This sign-in method is not yet available."
+  },
+  "tabs": {
+    "home": "Home",
+    "workout": "Workout",
+    "progress": "Progress",
+    "profile": "Profile"
+  },
+  "screens": {
+    "home": "Home Screen",
+    "workout": "Workout Screen",
+    "progress": "Progress Screen",
+    "profile": "Profile Screen"
+  }
+}
