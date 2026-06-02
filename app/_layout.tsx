@@ -1,8 +1,9 @@
 import 'react-native-reanimated';
+import '@/constants/i18n';
 
 import { useEffect, useState } from 'react';
 import { useFonts } from 'expo-font';
-import { Redirect, Stack } from 'expo-router';
+import { Stack, useRouter, useSegments } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 
 import * as Sentry from '@sentry/react-native';
@@ -39,8 +40,11 @@ export default Sentry.wrap(function RootLayout() {
   useEffect(() => {
     initDatabase()
       .then(() => setDbReady(true))
-      // eslint-disable-next-line no-console
-      .catch((err) => console.warn('[Layout] DB init failed:', err));
+      .catch((err) => {
+        // eslint-disable-next-line no-console
+        console.warn('[Layout] DB init failed:', err);
+        setDbReady(true);
+      });
   }, []);
 
   useEffect(() => {
@@ -62,16 +66,20 @@ export default Sentry.wrap(function RootLayout() {
 
 function RootNav() {
   const { user, loading } = useAuth();
+  const router = useRouter();
+  const segments = useSegments();
 
   useAppLifecycle();
 
-  if (loading) {
-    return null;
-  }
-
-  if (!user) {
-    return <Redirect href="/(auth)/login" />;
-  }
+  useEffect(() => {
+    if (loading) return;
+    const inAuth = segments[0] === '(auth)';
+    if (!user && !inAuth) {
+      router.replace('/(auth)/login');
+    } else if (user && inAuth) {
+      router.replace('/(tabs)');
+    }
+  }, [user, loading, segments]);
 
   return (
     <Stack>

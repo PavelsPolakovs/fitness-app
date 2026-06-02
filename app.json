@@ -48,6 +48,13 @@
     ],
     "experiments": {
       "typedRoutes": true
-    }
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "c6e41a0f-ff54-4971-985b-bc93f3d0f168"
+      }
+    },
+    "owner": "p.polakovs"
   }
 }

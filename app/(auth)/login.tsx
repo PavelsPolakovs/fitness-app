@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { ActivityIndicator, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { useRouter } from 'expo-router';
 
@@ -7,10 +8,11 @@ export default function LoginScreen() {
   const router = useRouter();
   const { user, loading, signIn } = useAuth();
 
-  if (user) {
-    router.replace('/(tabs)/');
-    return null;
-  }
+  useEffect(() => {
+    if (user) {
+      router.replace('/(tabs)');
+    }
+  }, [user]);
 
   const handleApple = () => {
     alert('This sign-in method is not yet available.');

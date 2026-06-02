@@ -1,6 +1,7 @@
 import NetInfo from '@react-native-community/netinfo';
 
 import { getDatabase } from '@/store/database/database';
+
 import { firestore } from '@/lib/firebase';
 
 export async function syncOnStart(userId: string): Promise<void> {
